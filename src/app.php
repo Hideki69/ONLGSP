@@ -16,12 +16,9 @@ $app['debug'] = true;
 require PATH_SRC . '/routes.php';
 
 #3 : Permet le rendu d'un controller dans la vue
-#  : https://silex.symfony.com/doc/2.0/providers/twig.html#rendering-a-controller
 $app->register(new HttpFragmentServiceProvider());
 
 #4 : Activation de Twig
-# : composer require twig/twig
-# : composer require symfony/twig-bridge
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => [
         PATH_VIEWS,
@@ -46,13 +43,12 @@ $app->register(new CsrfServiceProvider());
 $app->register(new ValidatorServiceProvider());
 
 #9 : Doctrine DBAL et Idiorm ORM
-require PATH_RESSOURCES . '/config/database.config.php';
+require PATH_SRC . '/config/database.php';
 
-#10 : SÃ©curisation de notre Application
-require PATH_RESSOURCES . '/config/security.php';
+#10 : Sécurisation de l'application
+require PATH_SRC . '/config/security.php';
 
 #11 : Gestion des Erreurs
-#   : https://gist.github.com/tournasdim/171b443065936bbb5ef3
 $app->error(function (\Exception $e) use ($app) {
     if ($e instanceof NotFoundHttpException) {
         return $app['twig']->render('erreur.html.twig', [

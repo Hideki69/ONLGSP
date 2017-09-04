@@ -8,7 +8,6 @@
 
 namespace Idiorm\Silex\Provider;
 
-use Arseniew\Silex\Service\IdiormService;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 

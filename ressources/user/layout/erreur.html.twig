@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{# Block de title défini dans base.html.twig #}
+{% block title %} Oops {% endblock %}
+
+{# Block de Contenu défini dans base.html.twig #}
+{% block contenu %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-xs-push-3">
+                <h1 class="text-center">{{ message }}</h1>
+                 <a href="{{ url('index_index') }}" class="btn-block btn btn-default">RETOURNER VERS L'ACCUEIL</a>
+            </div>
+    </div><!-- /.container -->
+
+{% endblock %}

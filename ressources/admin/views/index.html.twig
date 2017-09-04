@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+Panel ONLSGP - Administration Accueil
+{% endblock %}
+{% block contenu %}
+{% for admin in admindb %}
+<div class="col-sm-9">
+   <h1 class="text-center">Bienvenue dans l'espace administration</h1> 
+</div>
+<div class="col-sm-3">
+	<h3>sidebar</h3>
+</div>
+{% endfor %}
+{% endblock %}

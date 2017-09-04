@@ -5,19 +5,15 @@ use Silex\Application;
 
 class IndexController
 {
-    /**
-     * Affichage de la Page d'Accueil
-     * @return Symfony\Component\HttpFoundation\Response;
-     */
-    public function indexAction(Application $app) {
-        
-        # Déclaration d'un Message
-        $message = 'Mon Application Silex !';
-       
-        # Affichage dans la Vue
-        return $app['twig']->render('index.html.twig',[
-            'message'  => $message
-        ]);
+    public function indexPage(Application $app)
+    {
+        return $app['twig']->render('index.html.twig');
     }
-    
+
+    public function deconnexionPage(Application $app) {
+        # On vide la session de l'utilisateur
+        $app['session']->clear();
+        # On le redirige sur l'url de notre choix
+        return $app->redirect( $app['url_generator']->generate('index_home') );
+    }
 }

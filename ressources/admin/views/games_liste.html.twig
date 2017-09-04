@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+Panel ONLSGP - Administration - Liste Serveur jeux 
+{% endblock %}
+{% block contenu %}
+<div class="col-xs-12 text-center well well-sm">
+    <h4><strong>Liste des serveurs jeux</strong></h4>
+</div>
+<div class="col-sm-offset-2 col-sm-8">
+    {{ dump(iterator) }}
+    {% for data in iterator %}
+    <li>{{ data }}</li>
+    {% endfor %} 
+</div>
+{% endblock %}
