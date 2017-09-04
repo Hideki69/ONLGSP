@@ -1,0 +1,60 @@
+body, html{
+	margin: 0;
+	padding: 0;
+}
+
+#connexion{
+    position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+form{
+	padding: 0;
+	margin: 0;
+}
+.table{
+	padding-top: 10px;
+	padding-bottom: 0;
+}
+.navbar{
+	margin-bottom: 0;
+}
+.well{
+	margin-bottom: 10px;
+}
+.table > thead > tr > th {
+	background: #333333;
+	color: white;
+	text-align: center;
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+.table > tbody > tr > td  i {
+	font-size: 16px;
+}
+.navbar-header img{
+    padding: 0;
+    margin: 0;
+    max-height: 5rem;
+}
+@media (min-width: 768px) {
+  .navbar {
+    border-radius: 0px;
+  }
+}
+
+.modal{
+	top: 50%;
+    transform: translateY(-50%);
+    bottom:inherit;
+}
+.modal-header{
+	background-color: #CCCCCC;
+	border-radius: 6px 6px 0 0;
+	padding: 5px;
+}
+#titreMenu{
+	font-size: 20px;
+}
