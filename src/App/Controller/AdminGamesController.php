@@ -22,10 +22,57 @@ class AdminGamesController
         
        else:
 
-        //$process = new Process('sudo -u ONLGSP top -bn1');
-        $process = new Process('sudo -u ONLGSP bash /home/ONLGSP/minecraft/mcserver install');
-        $process->run();
-        $output = $process->getOutput();
+	
+#	$output = shell_exec('sudo mkdir insurgency 2>&1');
+#	echo "<pre>$output</pre>";
+#
+#	$output = shell_exec('cd insurgency && sudo wget -N --no-check-certificate https://gameservermanagers.com/dl/linuxgsm.sh 2>&1');
+#	echo "<pre>$output</pre>";
+#
+#	$output = shell_exec('sudo chown -R www-data /var/www/html/private/insurgency 2>&1');
+#	echo "<pre>$output</pre>";
+#
+#	$output = shell_exec('sudo -u www-data chmod +x linuxgsm.sh  2>&1');
+#	echo "<pre>$output</pre>";
+#
+#	$output = shell_exec('bash linuxgsm.sh insserver 2>&1');
+#	echo "<pre>$output</pre>";
+#
+#	$output = shell_exec('ls 2>&1');
+#	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo -u ONLGSP mkdir /home/ONLGSP/insurgency 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo -u ONLGSP cd /home/ONLGSP/insurgency 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo wget -N --no-check-certificate https://gameservermanagers.com/dl/linuxgsm.sh 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo cp /var/www/html/private/linuxgsm.sh /home/ONLGSP/insurgency/linuxgsm.sh 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo chown ONLGSP /home/ONLGSP/insurgency/linuxgsm.sh 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo chown ONLGSP /var/www/html/private 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo -u ONLGSP chmod +x /home/ONLGSP/insurgency/linuxgsm.sh 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo -u ONLGSP bash /home/ONLGSP/insurgency/linuxgsm.sh insserver 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo cp /var/www/html/private/insserver /home/ONLGSP/insurgency/insserver 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo chown ONLGSP /home/ONLGSP/insurgency/insserver 2>&1');
+	echo "<pre>$output</pre>";
+
+	$output = shell_exec('sudo -u ONLGSP bash /home/ONLGSP/insurgency/insserver install 2>&1');
+	echo "<pre>$output</pre>";
 
             return $app['twig']->render('games_liste.html.twig',[
             'session'       => $adminSession,
