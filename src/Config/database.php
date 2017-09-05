@@ -4,8 +4,8 @@ use Idiorm\Silex\Provider\IdiormServiceProvider;
 // 1 : Connexion BDD
 define('DBHOST', 'localhost');
 define('DBNAME', 'ONLGSP');
-define('DBUSERNAME', 'ONLGSP');
-define('DBPASSWORD', 'Passe_Test_1');
+define('DBUSERNAME', 'root');
+define('DBPASSWORD', '');
 
 // 2 : Doctrine DBAL
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
