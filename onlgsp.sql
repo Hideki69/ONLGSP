@@ -1,28 +1,18 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.6.6deb4
+-- https://www.phpmyadmin.net/
 --
--- Client :  localhost
--- Généré le :  Lun 04 Septembre 2017 à 10:01
--- Version du serveur :  10.1.25-MariaDB-1~xenial
--- Version de PHP :  7.1.9-1+ubuntu16.04.1+deb.sury.org+1
+-- Client :  localhost:3306
+-- G�n�r� le :  Mar 05 Septembre 2017 � 12:16
+-- Version du serveur :  10.1.25-MariaDB-
+-- Version de PHP :  7.1.9-1+ubuntu17.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Base de données :  `ONLGSP`
+-- Base de donn�es :  `ONLGSP`
 --
-CREATE DATABASE IF NOT EXISTS `ONLGSP` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `ONLGSP`;
 
 -- --------------------------------------------------------
 
@@ -34,23 +24,19 @@ CREATE TABLE `admin` (
   `idAdmin` int(11) NOT NULL,
   `email` varchar(190) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `clePublic` text NOT NULL,
-  `Ip` varchar(15) NOT NULL,
+  `clePublic` text,
+  `Ip` varchar(15) DEFAULT NULL,
   `session` varchar(250) DEFAULT NULL,
   `finSession` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `actif` char(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONS POUR LA TABLE `admin`:
---
-
---
 -- Contenu de la table `admin`
 --
 
 INSERT INTO `admin` (`idAdmin`, `email`, `password`, `clePublic`, `Ip`, `session`, `finSession`, `actif`) VALUES
-(1, 'contacts@cbsecurite.com', '556972429c265aab19b92b814d2ffe9b2b4dc7e99176aae6e211ad425a37ec15', '', '78.228.17.76', 'f137b82b02368c9213c8c39c1a404cb45df2098329cbc9891f392f7496e36d85', '2017-09-04 10:17:47', '1'),
+(1, 'contacts@cbsecurite.com', '556972429c265aab19b92b814d2ffe9b2b4dc7e99176aae6e211ad425a37ec15', '', '78.228.17.76', 'de7e645fa1d516685ae8be2d51d977198699765caf570fe37cac4d5f17de537a', '2017-09-05 12:07:55', '1'),
 (2, 'kiki-mixtomatoz@hotmail.fr', '2fdf2b1a395936873dc960917da16b91294e06185b8826dc11b0ee924b817bea', '', '81.66.220.216', '09a56677ce5b847cc23b110c0ea4b722b2546778039ddc0e5017996662a9586f', '2017-09-03 17:52:56', '1'),
 (3, 'pro.sylvain.galoustoff@gmail.com', '035170b5cc86ee0520405f290d2013843791d174f963d265b418fca16936129f', '', '80.215.14.10', NULL, '2017-09-03 14:28:04', '1');
 
@@ -77,12 +63,6 @@ CREATE TABLE `adminDetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONS POUR LA TABLE `adminDetails`:
---   `idAdmin`
---       `admin` -> `idAdmin`
---
-
---
 -- Contenu de la table `adminDetails`
 --
 
@@ -107,10 +87,6 @@ CREATE TABLE `jeux` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONS POUR LA TABLE `jeux`:
---
-
---
 -- Contenu de la table `jeux`
 --
 
@@ -129,7 +105,7 @@ INSERT INTO `jeux` (`idJeux`, `titre`, `image`, `fichierSh`, `taille`, `actif`) 
 (12, 'CodeName CURE', 'CodeName', 'ccserver', '1875', '1'),
 (13, 'Call of Duty - United Offensive', 'CodunitedOffensive', 'coduoserver', '2108', '1'),
 (14, 'Call of Duty 5 - World at War', 'CodWorldatWar', 'codwawserver', '8239', '1'),
-(15, 'Counter Strick Condition Z��ro', 'CounterStrickCondition0', 'csczserver', '66', '1'),
+(15, 'Counter Strick Condition Z??ro', 'CounterStrickCondition0', 'csczserver', '66', '1'),
 (16, 'Counter Strike 1.6', 'counter-strike-1-6', 'csserver', '0', '0'),
 (17, 'Counter Strike Global Offensive', 'counter-strike-global-offensive', 'csgoserver', '15147', '1'),
 (18, 'Counter Strike : Source', 'counter-strike-source', 'cssserver', '2180', '1'),
@@ -198,10 +174,6 @@ CREATE TABLE `menus` (
   `actif` int(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONS POUR LA TABLE `menus`:
---
-
 -- --------------------------------------------------------
 
 --
@@ -212,16 +184,12 @@ CREATE TABLE `users` (
   `idUsers` int(11) NOT NULL,
   `pseudo` varchar(100) NOT NULL,
   `email` varchar(190) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `Ip` varchar(15) NOT NULL,
-  `session` varchar(250) NOT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `Ip` varchar(15) DEFAULT NULL,
+  `session` varchar(250) DEFAULT NULL,
   `finSession` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `actif` char(1) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONS POUR LA TABLE `users`:
---
 
 --
 -- Contenu de la table `users`
@@ -254,17 +222,11 @@ CREATE TABLE `usersDetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- RELATIONS POUR LA TABLE `usersDetails`:
---   `idUsers`
---       `users` -> `idUsers`
---
-
---
 -- Contenu de la table `usersDetails`
 --
 
 INSERT INTO `usersDetails` (`idUsersDetails`, `idUsers`, `raisonSociale`, `tvaIntra`, `ape`, `siret`, `nom`, `prenom`, `adresse`, `cp`, `ville`, `pays`, `telephone`) VALUES
-(1, 1, NULL, NULL, NULL, NULL, 'PONCET', 'GÃ©rald', '34 Rue de la RÃ©publique', '69430', 'BEAUJEU', 'FRANCE', NULL),
+(1, 1, NULL, NULL, NULL, NULL, 'PONCET', 'G�rald', '34 Rue de la R�publique', '69430', 'BEAUJEU', 'FRANCE', NULL),
 (2, 2, NULL, NULL, NULL, NULL, 'BLABLA', 'Jean', '650 rue du blabla', '69000', 'BLABLA SUR RHONE', 'FRANCE', NULL);
 
 -- --------------------------------------------------------
@@ -281,14 +243,6 @@ CREATE TABLE `usersJeux` (
   `dateFin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `actif` char(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- RELATIONS POUR LA TABLE `usersJeux`:
---   `idJeux`
---       `jeux` -> `idJeux`
---   `idUsers`
---       `users` -> `idUsers`
---
 
 -- --------------------------------------------------------
 
@@ -308,16 +262,11 @@ CREATE TABLE `usersMembres` (
   `actifMembres` char(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- RELATIONS POUR LA TABLE `usersMembres`:
---   `idUsers`
---       `users` -> `idUsers`
---
-
 -- --------------------------------------------------------
 
 --
 -- Doublure de structure pour la vue `view_users`
+-- (Voir ci-dessous la vue r�elle)
 --
 CREATE TABLE `view_users` (
 `idUsers` int(11)
@@ -344,33 +293,14 @@ CREATE TABLE `view_users` (
 -- --------------------------------------------------------
 
 --
--- Structure de la vue `view_users` exportée comme un table
+-- Structure de la vue `view_users`
 --
 DROP TABLE IF EXISTS `view_users`;
-CREATE TABLE`view_users`(
-    `idUsers` int(11) NOT NULL DEFAULT '0',
-    `pseudoUsers` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-    `emailUsers` varchar(190) COLLATE utf8mb4_general_ci NOT NULL,
-    `passwordUsers` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-    `sessionUsers` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
-    `ipUsers` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
-    `finSessionUsers` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-    `actifUsers` char(1) COLLATE utf8mb4_general_ci DEFAULT '0',
-    `raisonSocialeUsers` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `tvaIntraUsers` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `apeUsers` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `siretUsers` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `nomUsers` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `prenomUsers` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `adresseUsers` text COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `cpUsers` varchar(5) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `villeUsers` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `paysUsers` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
-    `telephoneUsers` varchar(10) COLLATE utf8mb4_general_ci DEFAULT NULL
-);
+
+CREATE VIEW `view_users`  AS  select `u`.`idUsers` AS `idUsers`,`u`.`pseudo` AS `pseudoUsers`,`u`.`email` AS `emailUsers`,`u`.`password` AS `passwordUsers`,`u`.`session` AS `sessionUsers`,`u`.`Ip` AS `ipUsers`,`u`.`finSession` AS `finSessionUsers`,`u`.`actif` AS `actifUsers`,`ud`.`raisonSociale` AS `raisonSocialeUsers`,`ud`.`tvaIntra` AS `tvaIntraUsers`,`ud`.`ape` AS `apeUsers`,`ud`.`siret` AS `siretUsers`,`ud`.`nom` AS `nomUsers`,`ud`.`prenom` AS `prenomUsers`,`ud`.`adresse` AS `adresseUsers`,`ud`.`cp` AS `cpUsers`,`ud`.`ville` AS `villeUsers`,`ud`.`pays` AS `paysUsers`,`ud`.`telephone` AS `telephoneUsers` from (`users` `u` left join `usersDetails` `ud` on((`u`.`idUsers` = `ud`.`idUsers`))) ;
 
 --
--- Index pour les tables exportées
+-- Index pour les tables export�es
 --
 
 --
@@ -427,7 +357,7 @@ ALTER TABLE `usersMembres`
   ADD KEY `idUsers` (`idUsers`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT pour les tables export�es
 --
 
 --
@@ -444,12 +374,12 @@ ALTER TABLE `adminDetails`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `idUsers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUsers` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `usersDetails`
 --
 ALTER TABLE `usersDetails`
-  MODIFY `idUsersDetails` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUsersDetails` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `usersJeux`
 --
@@ -461,7 +391,7 @@ ALTER TABLE `usersJeux`
 ALTER TABLE `usersMembres`
   MODIFY `idUsersMembres` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Contraintes pour les tables exportées
+-- Contraintes pour les tables export�es
 --
 
 --
@@ -488,85 +418,3 @@ ALTER TABLE `usersJeux`
 --
 ALTER TABLE `usersMembres`
   ADD CONSTRAINT `usersMembres_ibfk_1` FOREIGN KEY (`idUsers`) REFERENCES `users` (`idUsers`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
---
--- Métadonnées
---
-USE `phpmyadmin`;
-
---
--- Métadonnées pour admin
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour adminDetails
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour jeux
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour menus
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour users
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour usersDetails
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour usersJeux
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour usersMembres
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour view_users
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__column_info')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__table_uiprefs')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__tracking')
-
---
--- Métadonnées pour ONLGSP
---
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__bookmark')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__relation')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__savedsearches')
--- Erreur de lecture des données :  (#1142 - SELECT command denied to user 'ONLGSP'@'localhost' for table 'pma__central_columns')
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
