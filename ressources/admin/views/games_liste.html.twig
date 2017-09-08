@@ -1,15 +1,73 @@
 {% extends 'layout.html.twig' %}
 {% block title %}
-Panel ONLSGP - Administration - Liste Serveur jeux 
+Panel ONLSGP - Administration - Liste Servers jeux 
 {% endblock %}
 {% block contenu %}
-<div class="col-xs-12 text-center well well-sm">
-    <h4><strong>Liste des serveurs jeux</strong></h4>
-</div>
-<div class="col-sm-offset-2 col-sm-8">
-    {{ dump(iterator) }}
-    {% for data in iterator %}
-    <li>{{ data }}</li>
-    {% endfor %} 
+{% set found = 0 %}
+
+<div class="modal-content" style="margin: 15px;">
+	<div class="modal-header text-center">
+		<strong id="titreMenu">Liste des Servers jeux</strong>
+	</div>
+	<div class="modal-body" style="padding-top: 0; padding-bottom: 0;">
+	{% if usersDb %}
+	{% for user in usersDb %}
+		
+    	<table class="table table-hover table-bordered" style="padding: 0; margin: 0; margin-top: 15px; margin-bottom: 15px;">
+			<thead>
+				<tr>
+					<th colspan="3"><strong>Server jeux de {{ user.pseudoUsers }}</strong></th>
+				</tr>
+			</thead>
+			<thead>
+				<tr>
+					<th width="40">#</th>
+					<th>Titre Du Jeu</th>
+					<th width="120">Action</th>
+				</tr>
+			</thead>
+			
+			{% for jeux in usersJeuxDb if (user.idUsers == jeux.idUsers) %}
+			
+        		<tbody>
+        			<tr class="{% if (jeux.etatJeux == 'stop') %}bg-danger{% else %}bg-success{% endif %}">
+        				<td>{{ loop.index }}</td>
+        				<td>{{ jeux.titre }}</td>
+        				<td class="text-center">
+        					{% if (jeux.etatJeux == 'stop') %}
+        					<a title="Demarrer le server " href="{{ url('admin_cmdServer', {adminSession: session, idUsersJeux: jeux.idUsersJeux, nom: jeux.fichierSh, action: 'start'}) }}" role="button" class="fa fa-play btn btn-success btn-xs" aria-hidden="true" style="font-size: 18px;"></a>
+        					<a title="Mettre a jour le server " href="{{ url('admin_cmdServer', {adminSession: session, idUsersJeux: jeux.idUsersJeux, nom: jeux.fichierSh, action: 'update'}) }}" role="button" class="fa fa-arrow-circle-up btn btn-warning btn-xs" aria-hidden="true" style="font-size: 18px;"></a>
+        					{% endif %}
+        					{% if (jeux.etatJeux == 'start') %}
+        					<a title="Stopper le server " href="{{ url('admin_cmdServer', {adminSession: session, idUsersJeux: jeux.idUsersJeux, nom: jeux.fichierSh, action: 'stop'}) }}" role="button" class="fa fa-stop btn btn-danger btn-xs" aria-hidden="true" style="font-size: 18px;"></a>
+        					<a title="Redemarrer le server " href="{{ url('admin_cmdServer', {adminSession: session, idUsersJeux: jeux.idUsersJeux, nom: jeux.fichierSh, action: 'restart'}) }}" role="button" class="fa fa-repeat btn btn-success btn-xs" aria-hidden="true" style="font-size: 18px;"></a>
+        					{% endif %}
+        					{% if (jeux.etatJeux == 'stop') %}
+        					<a title="Supprimer le server " href="{{ url('admin_cmdServer', {adminSession: session, idUsersJeux: jeux.idUsersJeux, nom: jeux.fichierSh, action: 'delete'}) }}" role="button" class="fa fa-trash btn btn-danger btn-xs" aria-hidden="true" style="font-size: 18px;"></a>
+        					{% endif %}
+        				</td>
+        			</tr>
+        		</tbody>
+        	{% else %}
+        	<tbody>
+        	    <tr>
+        	       <td colspan="3">Aucun jeu ajouté à cet utilisateur</td>
+        	    </tr>
+        	</tbody>
+    	    {% endfor %}
+
+
+        	
+			<tfoot>
+				<tr>
+					<td class="text-right" colspan="3"><a href="{{ url('admin_games_add', {adminSession: session, idUsers: user.idUsers}) }}" role="button" class="btn btn-primary">Ajouter Servers Jeux</a></td>
+				</tr>
+			</tfoot>
+		</table>
+	{% endfor %}
+	{% else %}
+	<div class="alert alert-danger" style="margin-bottom: 20px; margin-top: 20px;">Aucun jeux ne peux etre installé sans utilisateur actif.</div>
+	{% endif %}	
+	</div>
 </div>
 {% endblock %}

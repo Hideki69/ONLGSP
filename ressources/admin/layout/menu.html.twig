@@ -10,11 +10,11 @@
     </div>
     <div class="collapse navbar-collapse" id="menuAdmin">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url('admin_users', {adminSession: session}) }}"><i class="fa fa-users" aria-hidden="true"></i> Utilisateurs</a></li>
-        <li><a href="{{ url('admin_games', {adminSession: session}) }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Serveurs Jeux</a></li>
-        <li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i> Forum</a></li>
+        <li {% if (menu == 'users') %}class="active"{% endif %}><a href="{{ url('admin_users', {adminSession: session}) }}"><i class="fa fa-users" aria-hidden="true"></i> Utilisateurs</a></li>
+        <li {% if (menu == 'servers_jeux') %}class="active"{% endif %}><a href="{{ url('admin_games', {adminSession: session}) }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Servers Jeux</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li {% if (menu == 'mon_compte') %}class="active"{% endif %}><a href="{{ url('admin_edit', {adminSession: session}) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Mon Compte</a></li>
         <li><a href="{{ url('admin_deconnexion') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> D&eacute;connexion</a></li>
       </ul>
     </div>

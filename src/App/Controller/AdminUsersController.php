@@ -29,12 +29,13 @@ class adminUsersController
         
         else:
         
-            $usersListeDb = $app['idiorm.db']->for_table('view_users')->select('*')->order_by_desc('idUsers')->limit(20)->offset(0)->find_result_set();
+            $usersListeDb = $app['idiorm.db']->for_table('view_users')->select('*')->where('roleUsers','9')->order_by_desc('idUsers')->find_result_set();
         
             return $app['twig']->render('users_liste.html.twig', [
             'session'       => $adminSession,
             'usersListeDb'  => $usersListeDb,
-            'userDb'        => ''
+                'userDb'        => '',
+                'menu'           => 'users'
             ]);
         
         endif;
@@ -44,7 +45,7 @@ class adminUsersController
     # --------------------------------------------------------------------------------------------------------------------------- #
     # Controlleur edit utilisateur
     # --------------------------------------------------------------------------------------------------------------------------- #
-    public function AdminUsersEdit(Application $app, Request $request, $usersId,  $adminSession)
+    public function adminUsersEdit(Application $app, Request $request, $usersId,  $adminSession)
     {
     $isSessionInDb = $app['idiorm.db']->for_table('admin')
     ->where('session', $adminSession)
@@ -300,7 +301,8 @@ class adminUsersController
                     'form'          => $form1->createView(),
                     'usersPseudo'   => $usersInfos['pseudoUsers'],
                     'erreur'        => $erreurModif,
-                    'valid'         => ''
+                        'valid'         => '',
+                'menu'           => 'users'
                     ]);
                 
                 endif;
@@ -312,6 +314,7 @@ class adminUsersController
                 $userBd1->save();
                 
                 $userBd2 = $app['idiorm.db']->for_table('usersDetails')->use_id_column('idUsers')->find_one($user['idUsers']);
+                
                 $userBd2->set('nom', $user['nomUsers']);
                 $userBd2->set('prenom', $user['prenomUsers']);
                 $userBd2->set('adresse', $user['adresseUsers']);
@@ -332,7 +335,8 @@ class adminUsersController
                     'form'          => $form1->createView(),
                     'usersPseudo'   => $usersInfos['pseudoUsers'],
                     'erreur'        => $erreurModif,
-                    'valid'         => ''
+                        'valid'         => '',
+                'menu'           => 'users'
                     ]);
                 else:
                     return $app['twig']->render('users_edit.html.twig', [
@@ -341,7 +345,8 @@ class adminUsersController
                     'form'          => $form1->createView(),
                     'usersPseudo'   => $user['pseudoUsers'],
                     'erreur'        => '',
-                    'valid'         => 'Vos modifications ont été éffectuées !'
+                        'valid'         => 'Vos modifications ont été éffectuées !',
+                'menu'           => 'users'
                     ]);
                 endif;
                 
@@ -355,7 +360,8 @@ class adminUsersController
         'form'          => $form->createView(),
         'usersPseudo'   => $usersInfos['pseudoUsers'],
         'erreur'        => '',
-        'valid'         => ''
+            'valid'         => '',
+                'menu'           => 'users'
         ]);
     }
     
@@ -363,7 +369,7 @@ class adminUsersController
     # --------------------------------------------------------------------------------------------------------------------------- #
     # Controlleur ajouter utilisateur
     # --------------------------------------------------------------------------------------------------------------------------- #
-    public function AdminUsersAdd(Application $app, Request $request, $adminSession)
+    public function adminUsersAdd(Application $app, Request $request, $adminSession)
     {
     $isSessionInDb = $app['idiorm.db']->for_table('admin')
     ->where('session', $adminSession)
@@ -454,6 +460,7 @@ class adminUsersController
             ])
             ->add('submit', SubmitType::class, [
             'label'     => 'Ajouter',
+            'disabled'  =>  true,
             'attr'      =>  [
                 'class'     => 'btn btn-block btn-primary'
                 ]
@@ -553,6 +560,7 @@ class adminUsersController
                 ])
                 ->add('submit', SubmitType::class, [
                 'label'         => 'Ajouter',
+                'disabled'  => true,
                 'attr'          =>  [
                     'class'         => 'btn btn-block btn-primary'
                     ]
@@ -582,6 +590,7 @@ class adminUsersController
                     $usersDb1 = $app['idiorm.db']->for_table('users')->create();
                     $usersDb1->email        = $user['emailUsers'];
                     $usersDb1->pseudo       = $user['pseudoUsers'];
+                    $usersDb1->role         = '9';
                     $usersDb1->save();
                     
                     $idUserDb = $app['idiorm.db']->for_table('users')->where('email',$user['emailUsers'])->find_one();
@@ -605,7 +614,8 @@ class adminUsersController
                         'form'      => $form1->createView(),
                         'erreur'    => $erreurAjout,
                         'valid'     => '',
-                        'session'   => $adminSession
+                            'session'   => $adminSession,
+                            'menu'           => 'users'
                         ]);
                     
                     else:
@@ -614,7 +624,8 @@ class adminUsersController
                         'form'      => $form->createView(),
                         'erreur'    => '',
                         'valid'     => 'Nouveau utilisateur enregistré avec succès ! ',
-                        'session'   => $adminSession
+                            'session'   => $adminSession,
+                            'menu'           => 'users'
                         ]);
                     
                     endif;
@@ -625,7 +636,8 @@ class adminUsersController
                     'form'      => $form1->createView(),
                     'erreur'    => $erreurAjout,
                     'valid'     => '',
-                    'session'   => $adminSession
+                        'session'   => $adminSession,
+                        'menu'           => 'users'
                     ]);
                 
                 endif;
@@ -636,7 +648,8 @@ class adminUsersController
             'form'      => $form->createView(),
             'erreur'    => '',
             'valid'     => '',
-            'session'   => $adminSession
+                'session'   => $adminSession,
+                'menu'           => 'users'
             ]);
         
         endif;  
@@ -646,7 +659,7 @@ class adminUsersController
     # --------------------------------------------------------------------------------------------------------------------------- #
     # Controlleur supprimer utilisateur
     # --------------------------------------------------------------------------------------------------------------------------- #
-    public function AdminUsersDel(Application $app, $adminSession, $usersId)
+    public function adminUsersDel(Application $app, $adminSession, $usersId)
     {
         $isSessionInDb = $app['idiorm.db']->for_table('admin')
         ->where('session', $adminSession)
@@ -672,7 +685,7 @@ class adminUsersController
     # --------------------------------------------------------------------------------------------------------------------------- #
     # Controlleur activer utilisateur
     # --------------------------------------------------------------------------------------------------------------------------- #
-    public function AdminUsersActive(Application $app, $adminSession, $usersId)
+    public function adminUsersActive(Application $app, $adminSession, $usersId)
     {
         $isSessionInDb = $app['idiorm.db']->for_table('admin')
         ->where('session', $adminSession)
@@ -699,7 +712,7 @@ class adminUsersController
     # --------------------------------------------------------------------------------------------------------------------------- #
     # Controlleur activer utilisateur
     # --------------------------------------------------------------------------------------------------------------------------- #
-    public function AdminUsersDesactive(Application $app, $adminSession, $usersId)
+    public function adminUsersDesactive(Application $app, $adminSession, $usersId)
     {
         $isSessionInDb = $app['idiorm.db']->for_table('admin')
         ->where('session', $adminSession)

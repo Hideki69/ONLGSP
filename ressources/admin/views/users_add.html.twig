@@ -1,87 +1,92 @@
 {% extends 'layout.html.twig' %}
 {% block title %}
-Panel ONLSGP - Administration - Ajouter utilisateur 
+Panel ONLSGP - Administration - Ajouter Utilisateur 
 {% endblock %}
 {% block contenu %}
 <div class="modal-content" style="margin: 15px;">
-	<div class="modal-header text-center">
-		<strong id="titreMenu">Ajouter un utillisateur</strong>
-	</div>
-	<div class="modal-body" style="overflow: hidden;">
+    <div class="modal-header text-center">
+        <strong id="titreMenu">Ajouter un utillisateur</strong>
+    </div>
+    <div class="modal-body" style="overflow: hidden;">
         {% if erreur|length > 0 %}
-    	<div class="alert alert-danger fade in">
-    		Erreur :
-    	    {% for error in erreur %}
-    		<li>{{ error }}</li>
-    	    {% endfor %}
-    	</div>
+        <div class="alert alert-danger fade in">
+            Erreur :
+            {% for error in erreur %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </div>
         {% endif %}
         {% if valid %}
-    	<div class="alert alert-success fade in">{{ valid }}</div>
+        <div class="alert alert-success fade in">{{ valid }}</div>
         {% endif %}
         <form action="{{ url('admin_users_add', {adminSession: session}) }}" method="post" class="form-horizontal" style="margin: 0; margin-top: 15px;">
-        	<div class="col-sm-6">
-        		<div class="col-xs-12">
-        			<div class="form-group">{{ form_row(form.pseudoUsers) }}</div>
-        		</div>
+            <div class="col-sm-6">
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.pseudoUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-6">
-        		<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.emailUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.emailUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-6">
-        		<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.nomUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.nomUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-6">
-        		<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.prenomUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.prenomUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-12">
-        		<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.adresseUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.adresseUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-3">
-        		<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.cpUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.cpUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-9">
-        		<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.villeUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.villeUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-6">
-            	<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.paysUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.paysUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-6">
-            	<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.telephoneUsers) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.telephoneUsers) }}</div>
+                </div>
             </div>
             <div class="col-sm-6 col-sm-push-6">
-            	<div class="col-xs-12">
-            		<div class="form-group">{{ form_row(form.submit) }}</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">{{ form_row(form.submit) }}</div>
+                </div>
             </div>
             <div class="col-sm-6 col-sm-pull-6">
-            	<div class="col-xs-12">
-            		<div class="form-group">
-            		<a href="{{ url('admin_users', {adminSession: session}) }}" role="button" class="btn btn-block btn-info"><= Retour Liste</a>
-            		</div>
-            	</div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <a href="{{ url('admin_users', {adminSession: session}) }}" role="button" class="btn btn-block btn-info"> Retour Liste</a>
+                    </div>
+                </div>
             </div>
             {{ form_row(form._token) }}
         </form>
         <div class="col-xs-12 text-right">
-        	<p>* Champs obligatoires</p>
+            <p>* Champs obligatoires</p>
         </div>
     </div>
+    <div class="alert alert-info fade in">
+		<p>Les nouveaux utilisateurs auront le mot de passe "admin" par defaut. N'oubliez pas de les informer.</p>
+		<p>Pour disposer de l'envoie de mail avec mot de passe aléatoire de connexion, vous devez vous licencier.
+		Pour cela rendez vous sur notre site.</p>
+    	</div>
 </div>
 {% endblock %}

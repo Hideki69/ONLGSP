@@ -1,0 +1,81 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+Panel ONLSGP - Administration - Mon Compte
+{% endblock %}
+{% block contenu %}
+<div class="modal-content" style="margin: 15px;">
+	<div class="modal-header text-center">
+		<strong id="titreMenu">Mon Compte</strong>
+	</div>
+	<div class="modal-body" style="overflow: hidden;">
+        {% if erreur|length > 0 %}
+    	<div class="alert alert-danger fade in">
+    		Erreur : 
+    	    {% for error in erreur %}
+    		<li>{{ error }}</li>
+    	    {% endfor %}
+    	</div>
+        {% endif %}
+        {% if valid %}
+    	<div class="alert alert-success fade in">{{ valid }}</div>
+        {% endif %}
+        <form action="{{ url('admin_edit', {adminSession: session}) }}" method="post" class="form-horizontal" style="margin: 0; margin-top: 15px;">
+        	<div class="col-sm-6">
+        		<div class="col-xs-12">
+        			<div class="form-group">{{ form_row(form.passwordAdmin) }}</div>
+        		</div>
+            </div>
+            <div class="col-sm-6">
+        		<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.emailAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-6">
+        		<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.nomAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-6">
+        		<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.prenomAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-12">
+        		<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.adresseAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-3">
+        		<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.cpAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-9">
+        		<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.villeAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-6">
+            	<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.paysAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-6">
+            	<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.telephoneAdmin) }}</div>
+            	</div>
+            </div>
+            <div class="col-sm-6 col-sm-push-6">
+            	<div class="col-xs-12">
+            		<div class="form-group">{{ form_row(form.submit) }}</div>
+            	</div>
+            </div>
+            {{ form_row(form._token) }}
+            {{ form_row(form.idAdmin) }}
+    	</form>
+        <div class="col-xs-12 text-right">
+        	<p>* Champs obligatoires</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

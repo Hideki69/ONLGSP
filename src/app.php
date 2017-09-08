@@ -43,10 +43,10 @@ $app->register(new CsrfServiceProvider());
 $app->register(new ValidatorServiceProvider());
 
 #9 : Doctrine DBAL et Idiorm ORM
-require PATH_SRC . '/config/database.php';
+require PATH_SRC . '/Config/database.php';
 
 #10 : Sécurisation de l'application
-require PATH_SRC . '/config/security.php';
+require PATH_SRC . '/Config/security.php';
 
 #11 : Gestion des Erreurs
 $app->error(function (\Exception $e) use ($app) {

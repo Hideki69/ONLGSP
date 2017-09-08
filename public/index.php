@@ -1,7 +1,7 @@
 <?php
 
 // 1 : Quelques Constantes Utiles...
-define('PATH_ROOT', dirname(__DIR__));
+define('PATH_ROOT', $_SERVER["DOCUMENT_ROOT"]);
 define('PATH_PUBLIC', PATH_ROOT . '/public');
 define('PATH_SRC', PATH_ROOT . '/src');
 define('PATH_RESSOURCES', PATH_ROOT . '/ressources/user');
@@ -19,19 +19,3 @@ require PATH_SRC . '/app.php';
 
 // 5 : Execution de l'Application
 $app->run();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,18 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+Panel ONLSGP - Administration - Installation du Servers jeux
+{% endblock %}
+{% block contenu %}
+<div id="connexion" class="modal-content modal-sm" style="margin: 15px;">
+	<div class="modal-header text-center">
+		<strong id="titreMenu">Installation du Servers jeux</strong>
+	</div>
+	<div class="modal-body text-center" style="padding-top: 0; padding-bottom: 0;">
+	<img id="installImg" src="{{ asset('assets/images/chargement.gif') }}">
+	</div>
+	<div class="alert alert-info text-center">Vous serez redirigé vers la liste des servers jeux une fois l'installation terminé.</div>
+</div>
+<script>
+window.onload=function() { setTimeout('window.location.href=\'{{ path('admin_games', {adminSession: session}) }}\'; ', 65000); }
+</script>
+{% endblock %}

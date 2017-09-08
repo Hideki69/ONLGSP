@@ -1,8 +1,28 @@
 body, html{
 	margin: 0;
 	padding: 0;
+	height:100%;
 }
 
+body {
+	background-image: url("../images/fond.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+#blocConnexion{
+	margin-bottom: 0;
+	background-color: rgba(200,200,200,0.8);
+}
+
+h1 {
+  color: #5bc0de;
+}
 #connexion{
     position: absolute;
 	top: 50%;

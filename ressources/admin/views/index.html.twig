@@ -4,11 +4,23 @@ Panel ONLSGP - Administration Accueil
 {% endblock %}
 {% block contenu %}
 {% for admin in admindb %}
-<div class="col-sm-9">
-   <h1 class="text-center">Bienvenue dans l'espace administration</h1> 
+<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+<h1 class="text-center">Bienvenue dans l'espace administration {{ admin.pseudo }}</h1>
+    <div id="blocConnexion" class="well" style="padding-bottom: 0; margin-bottom: 10px; text-align: justify;">
+ 	<p>Ce panel de gestion est là pour vous aider a gérer les installations de vos servers de jeux en toutes facilités à des utilisateurs que vous aurez au préalable enregistrés.</p>
+ 	<p>Cette version est une version OpenSource donc aucun frais ne vous aient demandé pour une utilisation personnelle.</p>
+ 	<p>Cependant, certaines fonctionnalités ne vous sont pas accordées dans cette version. Son utilisation reste basique mais fonctionnelle.</p>
+ 	<p>Si vous désirez obtenir des fonctionnalités complémentaires, vous devrez vous licencier en vous rendant sur notre site.</p>
+    </div>
 </div>
-<div class="col-sm-3">
-	<h3>sidebar</h3>
+{% if (admin.password == '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918') %}
+<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="alert alert-danger" style="padding-bottom: 0; margin-bottom: 15px; text-align: justify;">
+ 	<h4>Attention !!!</h4>
+ 	<p>Votre mot de passe est toujours celui par defaut ("admin")</p>
+ 	<p>Veuillez le modifier en vous rendant dans le menu <a href="{{ url('admin_edit', {adminSession: session}) }}">"Mon Compte"</a>.</p>
+    </div>
 </div>
+{% endif %}
 {% endfor %}
 {% endblock %}

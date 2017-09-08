@@ -1,0 +1,35 @@
+{% extends 'layout.html.twig' %}
+{% block title %}
+Panel ONLSGP - Utilisateur - Connexion
+{% endblock %}
+{% block contenu %}
+
+<div class="conteneur">
+    <img src="{{asset('assets/images/fond1.png')}}" class="img-responsive imgFondConnexion">
+    <div id="connexion" class="col-xs-10 col-sm-4">
+        <h1 class="text-center">Connexion Utilisateur</h1>
+        <div class="well">
+            <form class="form" method="post" action="">
+
+                <div class="form-group">
+                    {{ form_row(form.pseudo) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.password) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_row(form.submit) }}
+                </div>
+
+                {{ form_row(form._token) }}
+            </form>
+        </div>
+
+        {% if error!='' %}
+        <div class="alert alert-danger fade in">{{ error }}</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

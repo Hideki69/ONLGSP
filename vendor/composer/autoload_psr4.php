@@ -33,5 +33,6 @@ return array(
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Idiorm\\' => array($baseDir . '/src/Idiorm'),
+    'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/EmailValidator'),
     'App\\' => array($baseDir . '/src/App'),
 );

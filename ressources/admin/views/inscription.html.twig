@@ -3,25 +3,28 @@
 Panel ONLSGP - Administration Inscription
 {% endblock %}
 {% block contenu %}
-    <div id="connexion" class="col-xs-10 col-sm-4">
-   		<h1 class="text-center">Inscription Administrateur</h1>
-    	<div class="well">
-    		<form class="form" method="post" action="">
-    			<div class="form-group">
-    				<label>Adresse email</label>
-    				{{ form_row(form.email) }}
-    			</div>
-    			<div class="form-group">
-    				<label>Mot de passe</label>
-    				{{ form_row(form.password) }}
-    			</div>
-    			{{ form_row(form._token) }}
-    			{{ form_row(form.ip) }}
-    			{{ form_row(form.submit) }}
-    		</form>
-    	</div>
-    	{% if error!='' %}
-    	<div class="alert alert-danger">{{ error }}</div>
-    	{% endif %}
+<div id="connexion" class="col-xs-10 col-sm-4">
+<h1 class="text-center">Inscription Administrateur</h1>
+    <div class="well">
+        <form class="form" method="post" action="">
+    	 
+	 <div class="form-group">
+    	     {{ form_row(form.pseudo) }}
+    	 </div>
+
+    	 <div class="form-group">
+	     {{ form_row(form.password) }}
+    	 </div>
+    
+    	 <div class="form-group">
+    	 {{ form_row(form.submit) }}
+    	 </div>
+	 
+	 {{ form_row(form._token) }}
+    	 </form>
     </div>
+    {% if error!='' %}
+    <div class="alert alert-danger fade in">{{ error }}</div>
+    {% endif %}
+</div>
 {% endblock %}
